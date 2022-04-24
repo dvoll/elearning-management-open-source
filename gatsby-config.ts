@@ -10,11 +10,12 @@ const config: GatsbyConfig = {
     "gatsby-plugin-mdx", {
       resolve: 'gatsby-source-filesystem',
       options: {
-        "name": "pages",
-        "path": "./src/pages/"
+        "name": "markdown-pages",
+        "path": "./src/markdown-pages/"
       },
-      __key: "pages"
     },
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: '@chakra-ui/gatsby-plugin',
       options: {

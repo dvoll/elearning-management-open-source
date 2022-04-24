@@ -1,59 +1,89 @@
 import React from 'react';
+import { Link as GatsbyLink } from 'gatsby'
 
 import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
+    Text,
+    Code,
+    Heading,
+    AspectRatio,
+    Image,
+    Spacer,
+    Box,
+    Button,
+    Link,
+    LinkOverlay,
 } from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
 
-import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
 import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
 import { Footer } from '../components/Footer'
-import SidebarWithHeader from '../components/Sidebar'
+import PageLayout from '../components/PageLayout';
+import { graphql } from 'gatsby';
+import { LinksPerCategory } from '../components/SidebarContent';
+import { Helmet } from 'react-helmet';
 
-const Index = () => (
-  <SidebarWithHeader>
-    <Container height="100vh">
-      <Hero />
-      <Main>
-        <Text>
-          Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-          <Code>TypeScript</Code>.
-        </Text>
-        <List spacing={3} my={0}>
-          <ListItem>
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <ChakraLink
-              isExternal
-              href="https://chakra-ui.com"
-              flexGrow={1}
-              mr={2}
-            >
-              Chakra UI <LinkIcon />
-            </ChakraLink>
-          </ListItem>
-          <ListItem>
-            <ListIcon as={CheckCircleIcon} color="green.500" />
-            <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-              Next.js <LinkIcon />
-            </ChakraLink>
-          </ListItem>
-        </List>
-      </Main>
-      <DarkModeSwitch />
-      <Footer>
-        <Text>Next ❤️ Chakra</Text>
-      </Footer>
-      <CTA />
-    </Container>
-  </SidebarWithHeader>
-)
+const Index = ({ data }: {data: QueryInterface}) => {
+    console.log('data', data.allMarkdownRemark.edges)
+    const linksPerCategory = data.allMarkdownRemark.edges.reduce<LinksPerCategory>((prev, curr) => {
+        const cat = curr.node.frontmatter.category;
+        if (!prev[cat]){
+            prev[cat] = [];
+        }
+        prev[cat].push({
+            title: curr.node.frontmatter.title,
+            slug: curr.node.frontmatter.slug,
+        })
+        return prev;
+    }, {});
+
+    return (
+        <PageLayout linksPerCategory={linksPerCategory}>
+            <Helmet title={`Management von kollaborativen Open Source Software Entwicklungs Projekten - E-Learning`} defer={false} />
+            <Heading fontSize="xl">Start</Heading>
+            <Box>
+                <Text mb={8}>
+                    Wähle das erste Thema aus der linken Spalte oder klicke auf den Button um zu starten.
+                </Text>
+                <Link as={GatsbyLink} to='/grundlagen/open-source'>
+                    <Button m={0} as="a" colorScheme={'teal'}>Starte mit dem ersten Thema</Button>
+                </Link>
+                <Spacer mb={148} />
+            </Box>
+        </PageLayout>
+    )
+};
 
 export default Index
+
+interface QueryInterface {
+    allMarkdownRemark: {
+        edges: {
+            node: {
+                frontmatter: {
+                    title: string
+                    slug: string
+                    category: string
+                }
+            }
+        }[]
+    }
+}
+export const pageQuery = graphql`
+  query {
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___sorting], order: ASC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            category
+            slug
+          }
+        }
+      }
+    }
+  }
+`
+
