@@ -1,8 +1,6 @@
 ---
-slug: "/methoden/extrem-programming"
-title: "Extrem Programming"
-category: "Methoden"
+slug: "/kommunikation-und-koordination/tbd"
+title: "TBD"
+category: "Kommunikation und Koordination"
 sorting: 1
 ---
-
-Beschreibung

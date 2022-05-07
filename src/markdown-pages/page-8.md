@@ -1,8 +1,6 @@
 ---
-slug: "/methoden/internet-speed-development"
-title: "Internet Speed Development"
-category: "Methoden"
+slug: "/tools/tbd"
+title: "TBD"
+category: "Tools"
 sorting: 1
 ---
-
-Beschreibung

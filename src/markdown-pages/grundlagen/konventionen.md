@@ -4,5 +4,3 @@ title: "Konventionen"
 category: "Grundlagen"
 sorting: 2
 ---
-
-Beschreibung
