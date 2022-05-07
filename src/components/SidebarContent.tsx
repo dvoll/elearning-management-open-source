@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as GatsbyLink } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby';
 import {
     Box,
     CloseButton,
@@ -16,14 +16,13 @@ import { DarkModeSwitch } from './DarkModeSwitch';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 export interface LinksPerCategory {
-    [key: string]: Array<{title: string, slug: string}>
+    [key: string]: Array<{ title: string; slug: string }>;
 }
 
 interface SidebarProps extends BoxProps {
     onClose: () => void;
     linksPerCategory: LinksPerCategory;
 }
-
 
 export default function SidebarContent({ onClose, linksPerCategory, ...rest }: SidebarProps) {
     return (
@@ -43,12 +42,10 @@ export default function SidebarContent({ onClose, linksPerCategory, ...rest }: S
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {Object.keys(linksPerCategory).map((linkCategory) => (
-                <Box
-                    px="2"
-                    py="4"
-                    key={linkCategory}
-                >
-                    <Text fontSize="xs" fontFamily="monospace">{linkCategory}</Text>
+                <Box px="2" py="4" key={linkCategory}>
+                    <Text fontSize="xs" fontFamily="monospace">
+                        {linkCategory}
+                    </Text>
                     {linksPerCategory[linkCategory].map((link) => (
                         <NavItem key={link.title} href={link.slug}>
                             {link.title}
@@ -57,15 +54,12 @@ export default function SidebarContent({ onClose, linksPerCategory, ...rest }: S
                 </Box>
             ))}
             <Spacer />
-            <Box
-                p="4"
-                mx="4"
-            >
+            <Box p="4" mx="4">
                 <DarkModeSwitch />
             </Box>
         </Flex>
     );
-};
+}
 
 interface NavItemProps extends FlexProps {
     children: ReactText;
@@ -73,7 +67,12 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ children, href, ...rest }: NavItemProps) => {
     return (
-        <Link as={GatsbyLink} to={href} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+        <Link
+            as={GatsbyLink}
+            to={href}
+            style={{ textDecoration: 'none' }}
+            _focus={{ boxShadow: 'none' }}
+        >
             <Flex
                 align="center"
                 px="2"
@@ -85,13 +84,13 @@ const NavItem = ({ children, href, ...rest }: NavItemProps) => {
                 cursor="pointer"
                 _hover={{
                     bg: 'teal',
-                    color: 'white'
+                    color: 'white',
                 }}
-                {...rest}>
-                    <ArrowForwardIcon paddingEnd={2} w={6} h={6} flexShrink={0} />
+                {...rest}
+            >
+                <ArrowForwardIcon paddingEnd={2} w={6} h={6} flexShrink={0} />
                 {children}
             </Flex>
         </Link>
     );
 };
-

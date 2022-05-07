@@ -1,15 +1,23 @@
 import React from 'react';
-import { useDisclosure, Box, useColorModeValue, Drawer, DrawerContent, Code, Spacer, Text } from "@chakra-ui/react";
-import { ReactNode } from "react";
-import { Header } from "./Header";
+import {
+    useDisclosure,
+    Box,
+    useColorModeValue,
+    Drawer,
+    DrawerContent,
+    Code,
+    Spacer,
+    Text,
+} from '@chakra-ui/react';
+import { ReactNode } from 'react';
+import { Header } from './Header';
 import SidebarContent, { LinksPerCategory } from './SidebarContent';
 import { Footer } from './Footer';
 import { Main } from './Main';
 
-
 export default function SidebarWithHeader({
     children,
-    linksPerCategory
+    linksPerCategory,
 }: {
     children: ReactNode;
     linksPerCategory: LinksPerCategory;
@@ -29,7 +37,8 @@ export default function SidebarWithHeader({
                 onClose={onClose}
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
-                size="full">
+                size="full"
+            >
                 <DrawerContent>
                     <Box>
                         <SidebarContent onClose={onClose} linksPerCategory={linksPerCategory} />
@@ -39,12 +48,16 @@ export default function SidebarWithHeader({
             {/* mobilenav */}
             <Header onOpen={onOpen} />
             <Box ml={{ base: 0, md: 60 }} p="4">
-                <Main>
-                    {children}
-                </Main>
+                <Main>{children}</Main>
                 <Spacer />
                 <Footer>
-                    <Text>E-Learing zum Thema <Code>Management von kollaborativen Open Source Software Entwicklungs Projekten</Code></Text>
+                    <Text>
+                        E-Learing zum Thema{' '}
+                        <Code>
+                            Management von kollaborativen Open Source Software Entwicklungs
+                            Projekten
+                        </Code>
+                    </Text>
                 </Footer>
             </Box>
         </Box>
