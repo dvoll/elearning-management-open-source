@@ -1,6 +1,17 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { AspectRatio, Box, Heading, Text } from '@chakra-ui/react';
+import {
+    Accordion,
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
+    AspectRatio,
+    Box,
+    Heading,
+    Text,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import PageLayout from '../components/PageLayout';
 import { Helmet } from 'react-helmet';
 import { useProcessor } from '../components/useRehypeProcessor';
@@ -26,7 +37,11 @@ export default function Template({
         return prev;
     }, {});
 
-    const processedBody = useProcessor(html);
+    let processedBody = null;
+
+    if (html) {
+        processedBody = useProcessor(html);
+    }
 
     return (
         <>
@@ -36,21 +51,89 @@ export default function Template({
                     {frontmatter.category}
                 </Text>
                 <Heading fontSize="xl">{frontmatter.title}</Heading>
-                <Box>{processedBody}</Box>
-                <AspectRatio maxW="800px" ratio={16 / 9}>
-                    <Box backgroundColor={'gray.500'}>
-                        <Text>Präsentation/Video</Text>
-                    </Box>
-                </AspectRatio>
+                <Box>
+                    <AspectRatio
+                        maxW="56rem"
+                        ratio={24 / 15}
+                        paddingBottom="24px"
+                        filter={useColorModeValue('', 'invert(.8)')}
+                    >
+                        <Box>
+                            {frontmatter.presentation ? (
+                                <iframe
+                                    style={{ width: '100%', height: '100%' }}
+                                    src={frontmatter.presentation}
+                                    width="921px"
+                                    height="600px"
+                                    frameBorder="0"
+                                >
+                                    Dies ist ein eingebettetes{' '}
+                                    <a target="_blank" href="https://office.com">
+                                        Microsoft Office
+                                    </a>
+                                    -Dokument, unterstützt von{' '}
+                                    <a target="_blank" href="https://office.com/webapps">
+                                        Office
+                                    </a>
+                                    .
+                                </iframe>
+                            ) : (
+                                <Text>Keine Präsentation vorhanden</Text>
+                            )}
+                        </Box>
+                    </AspectRatio>
+                </Box>
+
+                <Accordion allowToggle>
+                    {processedBody && (
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box flex="1" textAlign="left">
+                                        Transkript
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                <Box>{processedBody}</Box>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    )}
+
+                    {frontmatter.sources && (
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box flex="1" textAlign="left">
+                                        Quellen
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                                {frontmatter.sources?.map((source) => (
+                                    <Text key={source.title}>{source.title}</Text>
+                                ))}
+                            </AccordionPanel>
+                        </AccordionItem>
+                    )}
+                </Accordion>
             </PageLayout>
         </>
     );
 }
 
+interface FrontmatterSource {
+    title: string;
+    url?: string;
+}
 interface PageQueryFrontmatter {
     slug: string;
     title: string;
     category: string;
+    sources: FrontmatterSource[] | null;
+    presentation?: string | null;
 }
 
 interface PageQueryData {
@@ -78,6 +161,11 @@ export const pageQuery = graphql`
                 slug
                 title
                 category
+                sources {
+                    title
+                    url
+                }
+                presentation
             }
         }
         allMarkdownRemark(limit: 2000, sort: { fields: [frontmatter___sorting], order: ASC }) {
