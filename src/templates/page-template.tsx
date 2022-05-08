@@ -26,6 +26,7 @@ export default function Template({
     const linksPerCategory = data.allMarkdownRemark.edges.reduce<{
         [key: string]: { title: string; slug: string }[];
     }>((prev, curr) => {
+        if (curr.node.frontmatter.preview) return prev;
         const cat = curr.node.frontmatter.category;
         if (!prev[cat]) {
             prev[cat] = [];
@@ -134,6 +135,7 @@ interface PageQueryFrontmatter {
     category: string;
     sources: FrontmatterSource[] | null;
     presentation?: string | null;
+    preview?: boolean | null;
 }
 
 interface PageQueryData {
@@ -175,6 +177,7 @@ export const pageQuery = graphql`
                         title
                         category
                         slug
+                        preview
                     }
                 }
             }

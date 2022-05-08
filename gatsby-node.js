@@ -10,6 +10,7 @@ exports.createPages = ({ actions, graphql }) => {
                     node {
                         frontmatter {
                             slug
+                            preview
                         }
                     }
                 }
@@ -21,6 +22,7 @@ exports.createPages = ({ actions, graphql }) => {
         }
 
         return result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+            if (node.frontmatter.preview) return;
             createPage({
                 path: node.frontmatter.slug,
                 component: blogPostTemplate,
