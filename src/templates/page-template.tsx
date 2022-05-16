@@ -15,6 +15,7 @@ import {
 import PageLayout from '../components/PageLayout';
 import { Helmet } from 'react-helmet';
 import { useProcessor } from '../components/useRehypeProcessor';
+import QuizBox from '../components/quiz/QuizBox';
 
 export default function Template({
     data, // this prop will be injected by the GraphQL query below.
@@ -120,6 +121,18 @@ export default function Template({
                         </AccordionItem>
                     )}
                 </Accordion>
+                <QuizBox
+                    title="Quiz"
+                    question="Wer oder was ist ein Quiz?"
+                    questionSubtitle="Grundlagen - Open Source"
+                    items={[]}
+                    currentQuestionIndex={2}
+                    correct={[2, 4]}
+                    onAwnswerSubmit={() => {}}
+                    onQuestionSkip={() => {}}
+                    questionLength={5}
+                    options={['Antwort 1', 'Antwort 2', 'Antwort 3']}
+                />
             </PageLayout>
         </>
     );
