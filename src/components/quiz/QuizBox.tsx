@@ -49,18 +49,6 @@ const QuizBox = ({
     const foreground = useColorModeValue('gray.900', 'white');
     const background = 'transparent';
     const accent = 'teal';
-    const t1 = [...Array(5).keys()].map((item) => (
-        <Box
-            key={item}
-            w="8px"
-            h="8px"
-            borderRadius="50%"
-            borderWidth="1px"
-            borderColor={item >= currentQuestionIndex ? foreground : accent}
-            backgroundColor={item >= currentQuestionIndex ? 'transparent' : accent}
-        />
-    ));
-    console.log('t1', t1);
 
     return (
         <Box>
