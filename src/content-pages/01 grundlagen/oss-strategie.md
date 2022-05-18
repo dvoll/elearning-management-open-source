@@ -9,4 +9,19 @@ sources:
       url: 'https://www.linuxfoundation.org/tools/setting-an-open-source-strategy/'
     - title: 'B. Weinberg: "The Essentials of Open Source Strategy and Governance", aufgerufen am 06.05.2022'
       url: 'https://web.archive.org/web/20170530155802/http://blog.blackducksoftware.com/the-essentials-of-open-source-strategy-and-governance/'
+questions:
+    - question: 'Was?'
+      options: 
+        - text: 'Option 1'
+          correct: false
+        - text: 'Option 2'
+          correct: true
+    - question: 'Was2?'
+      options: 
+        - text: 'Option 2.1'
+          correct: true
+        - text: 'Option 2.2'
+          correct: true
+        - text: 'Option 2.3'
+          correct: false
 ---

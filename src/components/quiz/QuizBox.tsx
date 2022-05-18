@@ -16,7 +16,6 @@ export interface QuizBoxQuestion {}
 
 interface QuizBoxProps {
     title: string;
-    items: QuizOptionProps[];
     question: string;
     questionSubtitle: string;
     questionLength: number;
@@ -93,6 +92,13 @@ const QuizBox = ({
                                 key={item}
                                 label={item}
                                 selected={selected.indexOf(index) >= 0}
+                                onClick={() => {
+                                    if (selected.includes(index)) {
+                                        setSelected(selected.filter((item) => item !== index));
+                                        return;
+                                    }
+                                    setSelected(selected.concat([index]));
+                                }}
                                 flex={{ base: '1 0 250px', md: '0 0 calc(50% - .5rem)' }}
                             />
                         ))}

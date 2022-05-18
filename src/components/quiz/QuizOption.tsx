@@ -14,6 +14,7 @@ export interface QuizOptionProps extends ChakraProps {
     label: string;
     selected: boolean;
     status?: 'wrong' | 'correct';
+    onClick: () => void;
 }
 
 const QuizOption = ({ label, selected, status, ...rest }: QuizOptionProps) => {
@@ -23,6 +24,7 @@ const QuizOption = ({ label, selected, status, ...rest }: QuizOptionProps) => {
     return (
         // borderRadius={}="25px"
         <Button
+            isActive={selected}
             as="div"
             border="4px"
             borderColor={'transparent'}

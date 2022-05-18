@@ -45,6 +45,8 @@ export default function Template({
         processedBody = useProcessor(html);
     }
 
+    const { questions } = frontmatter;
+
     return (
         <>
             <Helmet title={`${frontmatter.title} - E-Learning`} defer={false} />
@@ -123,15 +125,15 @@ export default function Template({
                 </Accordion>
                 <QuizBox
                     title="Quiz"
-                    question="Wer oder was ist ein Quiz?"
+                    question={questions[0].question}
                     questionSubtitle="Grundlagen - Open Source"
-                    items={[]}
+                    // items={[]}
                     currentQuestionIndex={2}
                     correct={[2, 4]}
                     onAwnswerSubmit={() => {}}
                     onQuestionSkip={() => {}}
                     questionLength={5}
-                    options={['Antwort 1', 'Antwort 2', 'Antwort 3']}
+                    options={questions[0].options.map((option) => option.text)}
                 />
             </PageLayout>
         </>
@@ -142,6 +144,11 @@ interface FrontmatterSource {
     title: string;
     url?: string;
 }
+
+interface QuizQuestion {
+    question: string;
+    options: { text: string; correct: boolean }[];
+}
 interface PageQueryFrontmatter {
     slug: string;
     title: string;
@@ -149,6 +156,7 @@ interface PageQueryFrontmatter {
     sources: FrontmatterSource[] | null;
     presentation?: string | null;
     preview?: boolean | null;
+    questions: QuizQuestion[];
 }
 
 interface PageQueryData {
@@ -181,6 +189,13 @@ export const pageQuery = graphql`
                     url
                 }
                 presentation
+                questions {
+                    question
+                    options {
+                        text
+                        correct
+                    }
+                }
             }
         }
         allMarkdownRemark(limit: 2000, sort: { fields: [frontmatter___sorting], order: ASC }) {
