@@ -15,7 +15,7 @@ import {
 import PageLayout from '../components/PageLayout';
 import { Helmet } from 'react-helmet';
 import { useProcessor } from '../components/useRehypeProcessor';
-import QuizBox from '../components/quiz/QuizBox';
+import QuizComponent from '../components/quiz/QuizComponent';
 
 export default function Template({
     data, // this prop will be injected by the GraphQL query below.
@@ -45,7 +45,7 @@ export default function Template({
         processedBody = useProcessor(html);
     }
 
-    const { questions } = frontmatter;
+    const { questions, title, category } = frontmatter;
 
     return (
         <>
@@ -123,18 +123,14 @@ export default function Template({
                         </AccordionItem>
                     )}
                 </Accordion>
-                <QuizBox
-                    title="Quiz"
-                    question={questions[0].question}
-                    questionSubtitle="Grundlagen - Open Source"
-                    // items={[]}
-                    currentQuestionIndex={2}
-                    correct={[2, 4]}
-                    onAwnswerSubmit={() => {}}
-                    onQuestionSkip={() => {}}
-                    questionLength={5}
-                    options={questions[0].options.map((option) => option.text)}
-                />
+                {questions && (
+                    <QuizComponent
+                        title="Quiz"
+                        questions={questions}
+                        category={category}
+                        topic={title}
+                    />
+                )}
             </PageLayout>
         </>
     );
@@ -145,9 +141,10 @@ interface FrontmatterSource {
     url?: string;
 }
 
-interface QuizQuestion {
+export interface QuizQuestion {
     question: string;
-    options: { text: string; correct: boolean }[];
+    options: { text: string }[];
+    correct: number[];
 }
 interface PageQueryFrontmatter {
     slug: string;
@@ -193,8 +190,8 @@ export const pageQuery = graphql`
                     question
                     options {
                         text
-                        correct
                     }
+                    correct
                 }
             }
         }

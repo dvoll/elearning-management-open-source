@@ -37,14 +37,16 @@ const QuizOption = ({ label, selected, status, ...rest }: QuizOptionProps) => {
             w="full"
             {...rest}
         >
-            {/* <Box
-                pos="absolute"
-                inset="0"
-                borderRadius="25px"
-                borderWidth="1px"
-                boxSizing="border-box"
-                borderColor={foreground}
-            /> */}
+            {status !== undefined && (
+                <Box
+                    pos="absolute"
+                    inset="-4px"
+                    borderRadius="25px"
+                    borderWidth="2px"
+                    boxSizing="border-box"
+                    borderColor={status === 'correct' ? 'green' : 'red'}
+                />
+            )}
             <Flex
                 pos="absolute"
                 insetBlock="0"

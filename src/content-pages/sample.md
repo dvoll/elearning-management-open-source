@@ -10,7 +10,7 @@ questions:
         - text: 'Option 1'
           correct: false
         - text: 'Option 2'
-          correct: true
+      correct: [1]
     - question: 'Was2?'
       options: 
         - text: 'Option 2.1'
@@ -18,5 +18,5 @@ questions:
         - text: 'Option 2.2'
           correct: true
         - text: 'Option 2.3'
-          correct: false
+      correct: [1]
 ---
