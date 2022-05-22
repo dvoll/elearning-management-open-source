@@ -7,7 +7,7 @@ sorting: 4
 questions:
     - question: 'Welche Aussagen über Konventionen sind korrekt?'
       options:
-          - text: 'Konventionen sind Vereinbarung en.​'
+          - text: 'Konventionen sind Vereinbarungen.​'
           - text: 'Es sind Regeln, an die sich ein Entwicklerteam hält.​'
           - text: 'Regeln, die sich in der Entwicklerszene bewährt haben.​'
           - text: 'Sie sind für alle Beteiligten zugänglich.'
