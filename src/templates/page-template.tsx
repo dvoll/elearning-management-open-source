@@ -202,7 +202,6 @@ export const pageQuery = graphql`
                         title
                         category
                         slug
-                        preview
                     }
                 }
             }
