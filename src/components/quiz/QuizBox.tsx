@@ -205,23 +205,27 @@ const QuizBox = ({
                         </Button>
                     )}
                 </GridItem>
-                <GridItem area="footer" justifySelf={'center'} pb="1">
-                    <Flex gap="8px">
-                        {[...Array(questionLength).keys()].map((item) => (
-                            <Box
-                                key={item}
-                                w="8px"
-                                h="8px"
-                                borderRadius="50%"
-                                borderWidth="1px"
-                                borderColor={item + 1 >= currentQuestionIndex ? foreground : accent}
-                                backgroundColor={
-                                    item + 1 >= currentQuestionIndex ? 'transparent' : accent
-                                }
-                            />
-                        ))}
-                    </Flex>
-                </GridItem>
+                {questionLength > 1 && (
+                    <GridItem area="footer" justifySelf={'center'} pb="1">
+                        <Flex gap="8px">
+                            {[...Array(questionLength).keys()].map((item) => (
+                                <Box
+                                    key={item}
+                                    w="8px"
+                                    h="8px"
+                                    borderRadius="50%"
+                                    borderWidth="1px"
+                                    borderColor={
+                                        item >= currentQuestionIndex + 1 ? foreground : accent
+                                    }
+                                    backgroundColor={
+                                        item >= currentQuestionIndex + 1 ? 'transparent' : accent
+                                    }
+                                />
+                            ))}
+                        </Flex>
+                    </GridItem>
+                )}
             </Grid>
         </Box>
     );

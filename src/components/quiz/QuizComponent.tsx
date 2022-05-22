@@ -106,12 +106,12 @@ const QuizComponent = ({ title, questions, category, topic }: QuizComponentProps
                 <QuizBox
                     question={currQuestion.question}
                     questionSubtitle={`${category} - ${topic}`}
-                    currentQuestionIndex={2}
+                    currentQuestionIndex={currQuestionIndex}
                     correct={currQuestion.correct}
                     onAwnswerSubmit={onQuestionAnswered}
                     onQuestionSkip={onQuestionSkip}
                     showSolution={showSolution}
-                    questionLength={5}
+                    questionLength={questions.length}
                     options={currQuestion.options.map((option) => option.text)}
                     canSkipQuestion={skipped}
                     onNextStep={onNextQuestion}
