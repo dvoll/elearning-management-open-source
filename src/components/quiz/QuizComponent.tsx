@@ -97,7 +97,7 @@ const QuizComponent = ({ title, questions, category, topic }: QuizComponentProps
                     borderRadius={12}
                 >
                     <Heading fontSize="md" as="h3">
-                        Glückwunsch!
+                        Super!
                     </Heading>
                     <Text>Du hast alle Fragen beantwortet.</Text>
                 </Box>

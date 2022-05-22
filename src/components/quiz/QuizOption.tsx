@@ -30,6 +30,7 @@ const QuizOption = ({ label, selected, status, ...rest }: QuizOptionProps) => {
             borderColor={'transparent'}
             paddingInline="8"
             paddingBlock="2"
+            height="auto"
             // color={foreground}
             // background={selected ? backgroundActive : background}
             pos="relative"
@@ -58,7 +59,12 @@ const QuizOption = ({ label, selected, status, ...rest }: QuizOptionProps) => {
                 {selected && <CheckIcon />}
             </Flex>
             <Box>
-                <Text textAlign={'center'} fontStyle="italic" fontSize="md">
+                <Text
+                    textAlign={'center'}
+                    fontStyle="italic"
+                    fontSize="md"
+                    whiteSpace={'break-spaces'}
+                >
                     {label}
                 </Text>
             </Box>
