@@ -7,13 +7,11 @@ sorting: 3
 questions:
     - question: 'Welches Dokument sollte bei der Erstellung eines Open-Source Projektes nicht vorliegen?'
       options:
-          - text: 'options:'
           - text: 'Beitragsrichtlinie'
           - text: 'Verhaltenskodex'
           - text: 'Readme '
           - text: 'Lizenzdokument'
-      correct: [4] 
-
+      correct: [3]
     - question: 'Wie kann das Projekt der Öffentlichkeit bekannt gemacht werden?'
       options:
           - text: 'An Diskussionen zum Projektthema in Foren wie Stackoverlow teilnehmen'
@@ -21,5 +19,5 @@ questions:
           - text: 'Eine Beta-Version veröffentlichen'
           - text: 'Links zum eigenen Projekt im Internet verteilen'
           - text: 'Eine Verbreitung der OS-Software ist nicht notwendig'
-    correct: [0,2,3]
+      correct: [0, 2, 3]
 ---
