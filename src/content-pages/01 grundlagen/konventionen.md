@@ -2,7 +2,7 @@
 slug: '/grundlagen/konventionen'
 title: 'Konventionen'
 category: 'Grundlagen'
-presentation: 'https://onedrive.live.com/embed?resid=77FF6CBF13D23430%21108829&authkey=%21AN6BqL-sOQOzu80&em=2&wdAr=1.6'
+presentation: 'https://onedrive.live.com/embed?cid=77FF6CBF13D23430&resid=77FF6CBF13D23430%21108898&authkey=ACbML5oDCJmtfj0&em=2&wdAr=1.7777777777777777'
 sorting: 4
 questions:
     - question: 'Welche Aussagen über Konventionen sind korrekt?'
