@@ -58,7 +58,7 @@ export default function Template({
                 <Box>
                     <AspectRatio
                         maxW="56rem"
-                        ratio={24 / 15}
+                        ratio={16 / 9}
                         paddingBottom="24px"
                         filter={useColorModeValue('', 'invert(.8)')}
                     >
