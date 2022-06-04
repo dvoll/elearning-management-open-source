@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import {
     Accordion,
     AccordionButton,
@@ -44,6 +44,9 @@ export default function Template({
     if (html) {
         processedBody = useProcessor(html);
     }
+
+    console.log('frontmatter', frontmatter);
+    console.log('imageData', data.allFile);
 
     const { questions, title, category } = frontmatter;
 
@@ -171,10 +174,20 @@ interface PageQueryData {
             };
         }[];
     };
+    allFile: {
+        edges: any;
+        // node {
+        //     base
+        //     childImageSharp {
+        //         fluid {
+        //             ...GatsbyImageSharpFluid
+        //         }
+        // }
+    };
 }
 
 export const pageQuery = graphql`
-    query ($slug: String!) {
+    query ($slug: String!, $topic: String!) {
         markdownRemark(frontmatter: { slug: { eq: $slug } }) {
             html
             frontmatter {
@@ -202,6 +215,22 @@ export const pageQuery = graphql`
                         title
                         category
                         slug
+                    }
+                }
+            }
+        }
+        allFile(
+            filter: {
+                extension: { regex: "/(jpg)|(png)|(jpeg)/" }
+                relativeDirectory: { eq: "oss-strategie" }
+            }
+            sort: { fields: base }
+        ) {
+            edges {
+                node {
+                    base
+                    childImageSharp {
+                        gatsbyImageData(width: 200)
                     }
                 }
             }
