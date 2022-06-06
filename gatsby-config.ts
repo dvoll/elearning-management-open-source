@@ -6,8 +6,10 @@ const config: GatsbyConfig = {
         siteUrl: `https://www.yourdomain.tld`,
     },
     plugins: [
-        'gatsby-plugin-netlify-cms',
-        'gatsby-plugin-mdx',
+        'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
+        `gatsby-transformer-remark`,
+        'gatsby-plugin-image',
         {
             resolve: 'gatsby-source-filesystem',
             options: {
@@ -15,16 +17,6 @@ const config: GatsbyConfig = {
                 path: './src/content-pages/',
             },
         },
-        'gatsby-plugin-sharp',
-        'gatsby-transformer-sharp',
-        {
-            resolve: `gatsby-source-filesystem`,
-            options: {
-                name: `content-images`,
-                path: `./src/content-images/`,
-            },
-        },
-        `gatsby-transformer-remark`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: '@chakra-ui/gatsby-plugin',

@@ -1,4 +1,4 @@
-import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -80,12 +80,10 @@ const QuizComponent = ({ title, questions, category, topic }: QuizComponentProps
         setSkipped(true);
     }, [setSkipped]);
 
-    const borderColor = useColorModeValue('gray.200', 'gray.700');
-
     const currQuestion = questions[currQuestionIndex];
     return (
         <>
-            <Heading as="h2" fontSize="lg" mb="4">
+            <Heading as="h2" fontSize="xl" mb="4">
                 {title}
             </Heading>
             {topicFinished && (
@@ -93,7 +91,7 @@ const QuizComponent = ({ title, questions, category, topic }: QuizComponentProps
                     paddingInline={3}
                     paddingBlock={8}
                     borderWidth="1px"
-                    borderColor={borderColor}
+                    borderColor={'teal'}
                     borderRadius={12}
                 >
                     <Heading fontSize="md" as="h3">

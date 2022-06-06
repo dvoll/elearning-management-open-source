@@ -1,30 +1,30 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import {
     Accordion,
     AccordionButton,
     AccordionIcon,
     AccordionItem,
     AccordionPanel,
-    AspectRatio,
     Box,
     Heading,
     Text,
-    useColorModeValue,
 } from '@chakra-ui/react';
 import PageLayout from '../components/PageLayout';
 import { Helmet } from 'react-helmet';
 import { useProcessor } from '../components/useRehypeProcessor';
 import QuizComponent from '../components/quiz/QuizComponent';
+import { getImage } from 'gatsby-plugin-image';
+import SlideSwiper from '../components/SlideSwiper';
 
 export default function Template({
     data, // this prop will be injected by the GraphQL query below.
 }: {
     data: PageQueryData;
 }): JSX.Element {
-    const { markdownRemark } = data; // data.markdownRemark holds our post data
-    const { frontmatter, html } = markdownRemark;
-    const linksPerCategory = data.allMarkdownRemark.edges.reduce<{
+    const { pageData } = data; // data.markdownRemark holds our post data
+    const { frontmatter, html } = pageData;
+    const linksPerCategory = data.navigation.edges.reduce<{
         [key: string]: { title: string; slug: string }[];
     }>((prev, curr) => {
         if (curr.node.frontmatter.preview) return prev;
@@ -45,9 +45,6 @@ export default function Template({
         processedBody = useProcessor(html);
     }
 
-    console.log('frontmatter', frontmatter);
-    console.log('imageData', data.allFile);
-
     const { questions, title, category } = frontmatter;
 
     return (
@@ -57,57 +54,29 @@ export default function Template({
                 <Text mb={-5} fontSize={'sm'}>
                     {frontmatter.category}
                 </Text>
-                <Heading fontSize="xl">{frontmatter.title}</Heading>
+                <Heading as="h1" fontSize="2xl">
+                    {frontmatter.title}
+                </Heading>
                 <Box>
-                    <AspectRatio
-                        maxW="56rem"
-                        ratio={16 / 9}
-                        paddingBottom="24px"
-                        filter={useColorModeValue('', 'invert(.8)')}
-                    >
-                        <Box>
-                            {frontmatter.presentation ? (
-                                <iframe
-                                    style={{ width: '100%', height: '100%' }}
-                                    src={frontmatter.presentation}
-                                    width="921px"
-                                    height="600px"
-                                    frameBorder="0"
-                                >
-                                    Dies ist ein eingebettetes{' '}
-                                    <a target="_blank" href="https://office.com">
-                                        Microsoft Office
-                                    </a>
-                                    -Dokument, unterstützt von{' '}
-                                    <a target="_blank" href="https://office.com/webapps">
-                                        Office
-                                    </a>
-                                    .
-                                </iframe>
-                            ) : (
-                                <Text>Keine Präsentation vorhanden</Text>
-                            )}
-                        </Box>
-                    </AspectRatio>
+                    <SlideSwiper
+                        images={data.slideImages.edges.map((edge) => ({
+                            ...getImage(edge.node as any),
+                            base: edge.node.base,
+                        }))}
+                        texts={data.slideHtml.edges.map((slide) => slide.node.html)}
+                    />
+                    <Text />
                 </Box>
-
+                {questions && (
+                    <QuizComponent
+                        title="Quiz"
+                        questions={questions}
+                        category={category}
+                        topic={title}
+                    />
+                )}
+                <Box>{processedBody}</Box>
                 <Accordion allowToggle>
-                    {processedBody && (
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton>
-                                    <Box flex="1" textAlign="left">
-                                        Transkript
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel pb={4}>
-                                <Box>{processedBody}</Box>
-                            </AccordionPanel>
-                        </AccordionItem>
-                    )}
-
                     {frontmatter.sources && (
                         <AccordionItem>
                             <h2>
@@ -126,14 +95,6 @@ export default function Template({
                         </AccordionItem>
                     )}
                 </Accordion>
-                {questions && (
-                    <QuizComponent
-                        title="Quiz"
-                        questions={questions}
-                        category={category}
-                        topic={title}
-                    />
-                )}
             </PageLayout>
         </>
     );
@@ -160,11 +121,11 @@ interface PageQueryFrontmatter {
 }
 
 interface PageQueryData {
-    markdownRemark: {
+    pageData: {
         html: string;
         frontmatter: PageQueryFrontmatter;
     };
-    allMarkdownRemark: {
+    navigation: {
         edges: {
             node: {
                 fields: {
@@ -174,21 +135,26 @@ interface PageQueryData {
             };
         }[];
     };
-    allFile: {
-        edges: any;
-        // node {
-        //     base
-        //     childImageSharp {
-        //         fluid {
-        //             ...GatsbyImageSharpFluid
-        //         }
-        // }
+    slideHtml: {
+        edges: {
+            node: {
+                html: string;
+            };
+        }[];
+    };
+    slideImages: {
+        edges: {
+            node: {
+                base: string;
+                childImageSharp: any;
+            };
+        }[];
     };
 }
 
 export const pageQuery = graphql`
-    query ($slug: String!, $topic: String!) {
-        markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+    query ($slug: String!, $dir: String!, $pathRegex: String!) {
+        pageData: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
             html
             frontmatter {
                 slug
@@ -208,7 +174,11 @@ export const pageQuery = graphql`
                 }
             }
         }
-        allMarkdownRemark(limit: 2000, sort: { fields: [frontmatter___sorting], order: ASC }) {
+        navigation: allMarkdownRemark(
+            limit: 2000
+            sort: { fields: [frontmatter___sorting], order: ASC }
+            filter: { frontmatter: { type: { ne: "slide" } } }
+        ) {
             edges {
                 node {
                     frontmatter {
@@ -219,10 +189,24 @@ export const pageQuery = graphql`
                 }
             }
         }
-        allFile(
+        slideHtml: allMarkdownRemark(
+            limit: 2000
+            sort: { fields: [frontmatter___sorting], order: ASC }
+            filter: {
+                frontmatter: { type: { eq: "slide" } }
+                fileAbsolutePath: { regex: $pathRegex }
+            }
+        ) {
+            edges {
+                node {
+                    html
+                }
+            }
+        }
+        slideImages: allFile(
             filter: {
                 extension: { regex: "/(jpg)|(png)|(jpeg)/" }
-                relativeDirectory: { eq: "oss-strategie" }
+                relativeDirectory: { eq: $dir }
             }
             sort: { fields: base }
         ) {
@@ -230,7 +214,7 @@ export const pageQuery = graphql`
                 node {
                     base
                     childImageSharp {
-                        gatsbyImageData(width: 200)
+                        gatsbyImageData(width: 896)
                     }
                 }
             }

@@ -17,31 +17,20 @@ exports.createPages = ({ actions, graphql }) => {
                         }
                         frontmatter {
                             slug
+                            type
                         }
                     }
                 }
             }
         }
         `).then((result) => {
-        // allFile(filter: { extension: { regex: "/(jpg)|(png)|(jpeg)/" } }, sort: { fields: base }) {
-        //     edges {
-        //         node {
-        //             base
-        //             childImageSharp {
-        //                 gatsbyImageData(width: 200)
-        //             }
-        //         }
-        //     }
-        // }
         if (result.errors) {
             return Promise.reject(result.errors);
         }
 
 
         return result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-            // const images = result.data.allFile.edges; //.filter(({node}) => node.base)
-            // dir:'/home/dvoll/repositories/elearning-management-open-source/src/content-pages/01 grundlagen'
-            // dir:'/home/dvoll/repositories/elearning-management-open-source/src/content-pages/01 grundlagen/oss-strategie'
+            if (node.frontmatter.type === 'slide') return;
             const [, category, topic] = node.parent.dir.match(/.*\/(.*)\/(.*)$/);
             createPage({
                 path: node.frontmatter.slug,
@@ -49,22 +38,10 @@ exports.createPages = ({ actions, graphql }) => {
                 context: {
                     // additional data can be passed via context
                     slug: node.frontmatter.slug,
-                    topic, 
+                    dir: `${category}/${topic}`,
+                    pathRegex: `/${category}\/${topic}/`,
                 },
             });
         });
     });
-};
-
-exports.onCreateNode = ({ node, getNode, actions }) => {
-    const { createNodeField } = actions;
-    if (node.internal.type === `MarkdownRemark`) {
-        const parent = getNode(node.parent);
-        let collection = parent.sourceInstanceName;
-        createNodeField({
-            node,
-            name: 'collection',
-            value: collection,
-        });
-    }
 };
