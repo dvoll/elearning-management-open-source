@@ -22,6 +22,7 @@ const SlideSwiper = ({ images, texts }: SlideSwiperProps) => {
         setActiveIndex(newIndex);
     }, []);
     const swiperRef = useRef<any>(null);
+    if (images.length === 0) return null;
     return (
         <>
             <Swiper

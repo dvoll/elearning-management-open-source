@@ -16,6 +16,7 @@ import { useProcessor } from '../components/useRehypeProcessor';
 import QuizComponent from '../components/quiz/QuizComponent';
 import { getImage } from 'gatsby-plugin-image';
 import SlideSwiper from '../components/SlideSwiper';
+import PresentationEmbedLegacy from '../components/PresentationEmbedLegacy';
 
 export default function Template({
     data, // this prop will be injected by the GraphQL query below.
@@ -45,6 +46,11 @@ export default function Template({
         processedBody = useProcessor(html);
     }
 
+    const images = data.slideImages.edges.map((edge) => ({
+        ...getImage(edge.node as any),
+        base: edge.node.base,
+    }));
+
     const { questions, title, category } = frontmatter;
 
     return (
@@ -58,14 +64,14 @@ export default function Template({
                     {frontmatter.title}
                 </Heading>
                 <Box>
-                    <SlideSwiper
-                        images={data.slideImages.edges.map((edge) => ({
-                            ...getImage(edge.node as any),
-                            base: edge.node.base,
-                        }))}
-                        texts={data.slideHtml.edges.map((slide) => slide.node.html)}
-                    />
-                    <Text />
+                    {images.length > 0 ? (
+                        <SlideSwiper
+                            images={images}
+                            texts={data.slideHtml.edges.map((slide) => slide.node.html)}
+                        />
+                    ) : (
+                        <PresentationEmbedLegacy presentationUrl={frontmatter.presentation} />
+                    )}
                 </Box>
                 {questions && (
                     <QuizComponent
