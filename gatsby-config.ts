@@ -1,6 +1,7 @@
 import type { GatsbyConfig } from 'gatsby';
 
 const config: GatsbyConfig = {
+    pathPrefix: `/elearning/data/FH-Bielefeld/lm_data/lm_1335436`,
     siteMetadata: {
         title: `Management von kollaborativen Open Source Software Entwicklungs Projekten`,
         siteUrl: `https://www.yourdomain.tld`,
