@@ -18,7 +18,7 @@ import { getImage } from 'gatsby-plugin-image';
 import SlideSwiper from '../components/SlideSwiper';
 import PresentationEmbedLegacy from '../components/PresentationEmbedLegacy';
 
-export default function Template({
+export default function PageTemplate({
     data, // this prop will be injected by the GraphQL query below.
 }: {
     data: PageQueryData;
@@ -56,7 +56,7 @@ export default function Template({
     return (
         <>
             <Helmet title={`${frontmatter.title} - E-Learning`} defer={false} />
-            <PageLayout linksPerCategory={linksPerCategory}>
+            <PageLayout linksPerCategory={linksPerCategory} currentSlug={frontmatter.slug}>
                 <Text mb={-5} fontSize={'sm'}>
                     {frontmatter.category}
                 </Text>

@@ -22,9 +22,15 @@ export interface LinksPerCategory {
 interface SidebarProps extends BoxProps {
     onClose: () => void;
     linksPerCategory: LinksPerCategory;
+    currentSlug: string;
 }
 
-export default function SidebarContent({ onClose, linksPerCategory, ...rest }: SidebarProps) {
+export default function SidebarContent({
+    onClose,
+    linksPerCategory,
+    currentSlug,
+    ...rest
+}: SidebarProps) {
     return (
         <Flex
             flexDirection="column"
@@ -46,11 +52,14 @@ export default function SidebarContent({ onClose, linksPerCategory, ...rest }: S
                     <Text fontSize="xs" fontFamily="monospace">
                         {linkCategory}
                     </Text>
-                    {linksPerCategory[linkCategory].map((link) => (
-                        <NavItem key={link.title} href={link.slug}>
-                            {link.title}
-                        </NavItem>
-                    ))}
+                    {linksPerCategory[linkCategory].map((link) => {
+                        const isActive = link.slug === currentSlug;
+                        return (
+                            <NavItem key={link.title} href={link.slug} isActive={isActive}>
+                                {link.title}
+                            </NavItem>
+                        );
+                    })}
                 </Box>
             ))}
             <Spacer />
@@ -64,8 +73,9 @@ export default function SidebarContent({ onClose, linksPerCategory, ...rest }: S
 interface NavItemProps extends FlexProps {
     children: ReactText;
     href: string;
+    isActive: boolean;
 }
-const NavItem = ({ children, href, ...rest }: NavItemProps) => {
+const NavItem = ({ children, href, isActive, ...rest }: NavItemProps) => {
     return (
         <Link
             as={GatsbyLink}
@@ -82,6 +92,9 @@ const NavItem = ({ children, href, ...rest }: NavItemProps) => {
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
+                // border={'1px'}
+                bg={isActive ? 'teal.700' : 'transparent'}
+                color={isActive ? 'white' : undefined}
                 _hover={{
                     bg: 'teal',
                     color: 'white',

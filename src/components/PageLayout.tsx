@@ -15,12 +15,14 @@ import SidebarContent, { LinksPerCategory } from './SidebarContent';
 import { Footer } from './Footer';
 import { Main } from './Main';
 
-export default function SidebarWithHeader({
+export default function PageLayout({
     children,
     linksPerCategory,
+    currentSlug,
 }: {
     children: ReactNode;
     linksPerCategory: LinksPerCategory;
+    currentSlug: string;
 }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -29,6 +31,7 @@ export default function SidebarWithHeader({
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'flex' }}
                 linksPerCategory={linksPerCategory}
+                currentSlug={currentSlug}
             />
             <Drawer
                 autoFocus={false}
@@ -41,7 +44,11 @@ export default function SidebarWithHeader({
             >
                 <DrawerContent>
                     <Box>
-                        <SidebarContent onClose={onClose} linksPerCategory={linksPerCategory} />
+                        <SidebarContent
+                            onClose={onClose}
+                            linksPerCategory={linksPerCategory}
+                            currentSlug={currentSlug}
+                        />
                     </Box>
                 </DrawerContent>
             </Drawer>
