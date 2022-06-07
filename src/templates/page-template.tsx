@@ -220,7 +220,7 @@ export const pageQuery = graphql`
                 node {
                     base
                     childImageSharp {
-                        gatsbyImageData(width: 896)
+                        gatsbyImageData(width: 1792)
                     }
                 }
             }
