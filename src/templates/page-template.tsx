@@ -196,8 +196,8 @@ export const pageQuery = graphql`
             }
         }
         slideHtml: allMarkdownRemark(
-            limit: 2000
-            sort: { fields: [frontmatter___sorting], order: ASC }
+            limit: 100
+            sort: { fields: fileAbsolutePath }
             filter: {
                 frontmatter: { type: { eq: "slide" } }
                 fileAbsolutePath: { regex: $pathRegex }
