@@ -1,5 +1,5 @@
 ---
-slug: '/kommunikation-und-koordination/lenkungsstrukturen-von-oss-projekten​'
+slug: '/kommunikation-und-koordination/lenkungsstrukturen-von-oss-projekten'
 title: 'Lenkungsstrukturen von OSS-Projekten​'
 category: 'Kommunikation und Koordination'
 sorting: 0
