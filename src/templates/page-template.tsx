@@ -8,6 +8,7 @@ import {
     AccordionPanel,
     Box,
     Heading,
+    Link,
     Text,
 } from '@chakra-ui/react';
 import PageLayout from '../components/PageLayout';
@@ -95,7 +96,19 @@ export default function PageTemplate({
                             </h2>
                             <AccordionPanel pb={4}>
                                 {frontmatter.sources?.map((source) => (
-                                    <Text key={source.title}>{source.title}</Text>
+                                    <Text
+                                        key={source.title || source.url}
+                                        mb={2}
+                                        fontStyle={'italic'}
+                                    >
+                                        {source.title ? source.title : ''}
+                                        {source.title && source.url ? ': ' : ''}
+                                        {source.url && (
+                                            <Link href={source.url} fontStyle={'normal'}>
+                                                {source.url}
+                                            </Link>
+                                        )}
+                                    </Text>
                                 ))}
                             </AccordionPanel>
                         </AccordionItem>
@@ -107,7 +120,7 @@ export default function PageTemplate({
 }
 
 interface FrontmatterSource {
-    title: string;
+    title?: string;
     url?: string;
 }
 
