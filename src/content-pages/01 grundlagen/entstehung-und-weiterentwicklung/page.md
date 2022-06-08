@@ -20,4 +20,8 @@ questions:
           - text: 'Links zum eigenen Projekt im Internet verteilen'
           - text: 'Eine Verbreitung der OS-Software ist nicht notwendig'
       correct: [0, 2, 3]
+sources:
+    - url: 'https://bitsea.de/2021/02/eigene-projekte-als-open-source-veroffentlichen/'
+    - url: 'https://opensource.guide/de/starting-a-project/'
+    - url: 'https://opensource.guide/de/finding-users/'
 ---

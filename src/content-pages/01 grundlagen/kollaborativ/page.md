@@ -12,4 +12,7 @@ questions:
           - text: 'Bugs und Lücken werden schnell erkannt'
           - text: 'Entwicklung nur durch eine Person'
       correct: [0, 2]
+sources:
+    - url: 'https://www.selflinux.org/selflinux/html/die_kathedrale_und_der_basar.html'
+    - url: 'https://neueswort.de/kollaborativ/#:~:text=Das%20Adjektiv%20kollaborativ%20bedeutet%20%E2%80%9Ezusammenarbeitend,kollaborativen%20Gemeinschaft%20einen%20Text%20verfassen.'
 ---
