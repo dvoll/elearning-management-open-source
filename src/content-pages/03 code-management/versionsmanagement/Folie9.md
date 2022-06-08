@@ -1,0 +1,4 @@
+---
+type: "slide"
+---
+Pull bzw. Merge Requests dienen dazu einen Prozess für den Umgang mit Code Änderungen und Einreichungen zu ermöglichen. Werden Änderungen von einem Entwickler bereitgetsellt, können diese durch den Porjektbesitzer (oder durch vergebene Rollen) überprüft werden. Es kann eine Konversation über die Ädnerung gestartet werden, um diese besser zu verstehen und den Code zu verbessern. Danach können diese eingereichten Änderungen akzeptiert oder abgelehnt werden, zum Beispiel, wenn die Änderung nicht zu den Zielen eines Projektes passt. Auch können zur Unterstüztung automatische Tests eingebunden werden, die einen ersten Einblick in die Code Qualität liefern können.
