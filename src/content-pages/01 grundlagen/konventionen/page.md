@@ -1,6 +1,6 @@
 ---
 slug: '/grundlagen/konventionen'
-title: 'Konventionen'
+title: 'Verhaltens-Konventionen'
 category: 'Grundlagen'
 presentation: 'https://onedrive.live.com/embed?cid=77FF6CBF13D23430&resid=77FF6CBF13D23430%21108898&authkey=ACbML5oDCJmtfj0&em=2&wdAr=1.7777777777777777'
 sorting: 4
