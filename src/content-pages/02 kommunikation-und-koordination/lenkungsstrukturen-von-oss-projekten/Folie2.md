@@ -1,7 +1,7 @@
 ---
 type: 'slide'
 ---
-Open Source Projekte müssen trotz der vielen Meinungen aus der Community geleitet werden. Dafür wird standardmäßig einer der drei verschiedenen Ansätze gewählt.
+Open Source Projekte müssen trotz der vielen Meinungen aus der Community geleitet werden. Dafür wird standardmäßig einer der drei folgenden Ansätze gewählt.
 
 Benevolent Dictator for Life heißt zu Deutsch gutmütiger Diktator auf Lebenszeit. Bei dieser Lenkungsstruktur hat eine Person das letzte Wort bei allen wichtigen Projektentscheidungen. Aus Unternehmen stammende Projekte oder kleine Projekte werden oft durch diese Struktur gelenkt. Das sorgt dafür, dass sich das Projekt in die für die Firma/ Diktator gewollte Richtung entwickelt.
 
