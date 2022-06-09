@@ -7,7 +7,7 @@ sorting: 4
 questions:
     - question: 'Was passiert, wenn nach einem Verstoß keine Lösung gefunden werden kann?'
       options:
-          - text: 'Der Verursacher wird zeitweise oder dauerhafte vom Projekt suspendiert'
+          - text: 'Der Verursacher wird zeitweise oder dauerhaft vom Projekt suspendiert'
           - text: 'Der Verursacher muss einen Entschuldigungsbrief schreiben'
           - text: 'Es passiert gar nichts, der Vorfall wird ignoriert und zu den Akten gelegt'
           - text: 'Der Verursacher muss Pizza für die gesamte Community spendieren'
