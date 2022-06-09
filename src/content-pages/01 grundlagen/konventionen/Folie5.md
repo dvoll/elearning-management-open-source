@@ -8,6 +8,6 @@ Bei den betroffenen Mitgliedern kann es sich um Wiederholungstäter handeln oder
 
 Um die Situation besser verstehen zu können, sollte ein gewisse Zeit eingeplant werden, die benötigt wird, um Kommentare zu lesen und Informationen zu sichten.
 
-Wichtig ist es auch, mehrere Perspektiven über Verhalten der Person zu sammeln, die den Vorfall ausgelöst hat.
+Wichtig ist es auch, mehrere Perspektiven über das Verhalten der Person zu sammeln, die den Vorfall ausgelöst hat.
 
-Unbeteiligte Personen sollten sich nicht in einen Streit hineinziehen lassen, sich nicht durch das Verhalten anderen Personen von ihrer eigentlichen Arbeit ablenken lassen oder sich zu etwas verleiten lassen.
+Unbeteiligte Personen sollten sich nicht in einen Streit hineinziehen lassen, sich nicht durch das Verhalten anderer Personen von ihrer eigentlichen Arbeit ablenken lassen oder sich zu etwas verleiten lassen.

@@ -9,7 +9,7 @@ questions:
       options:
           - text: 'Der Verursacher wird zeitweise oder dauerhafte vom Projekt suspendiert'
           - text: 'Der Verursacher muss einen Entschuldigungsbrief schreiben'
-          - text: 'Es passiert gar nichts, der Vorfall ignoriert und zu den Akten gelegt'
+          - text: 'Es passiert gar nichts, der Vorfall wird ignoriert und zu den Akten gelegt'
           - text: 'Der Verursacher muss Pizza für die gesamte Community spendieren'
       correct: [0]
 sources:
