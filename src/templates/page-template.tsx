@@ -75,15 +75,17 @@ export default function PageTemplate({
                     )}
                 </Box>
                 {questions && (
-                    <QuizComponent
-                        title="Quiz"
-                        questions={questions}
-                        category={category}
-                        topic={title}
-                    />
+                    <Box maxWidth="56rem">
+                        <QuizComponent
+                            title="Quiz"
+                            questions={questions}
+                            category={category}
+                            topic={title}
+                        />
+                    </Box>
                 )}
-                <Box>{processedBody}</Box>
-                <Accordion allowToggle>
+                <Box maxWidth="56rem">{processedBody}</Box>
+                <Accordion maxWidth="56rem" allowToggle>
                     {frontmatter.sources && (
                         <AccordionItem>
                             <h2>

@@ -23,10 +23,8 @@ const SwiperNavigation = ({
         <Flex
             padding={4}
             paddingBlockEnd={0}
-            paddingBlockStart={3}
-            marginBlockStart={1}
+            paddingBlockStart={2}
             justifyContent={'space-between'}
-            borderInline="1px"
             borderColor="teal"
         >
             <Box>
