@@ -5,6 +5,6 @@ Es gibt diverse Gründe woran Open Source Softwareentwicklungsprojekte scheitern
 
 Neben dem mangelnden Interesse an der Software und dem damit einhergehenden Schrumpfen der Community kann eine schlechte Führung in großen Projekten zum Kentern des Projektes führen. Dies kann sowohl einen Mangel an Aufmerksamkeit und prompter Reaktion bedeuten als auch ein unsoziales Verhalten oder autokratische Regeln.
 
-Unzureichende Finanzierung. Ernstzunehmende Projekte erfordern oft Entwickler, die einen Arbeitgeber haben, der die Arbeit im besten Fall als relevant für seinen Auftrag ansieht oder im schlimmsten Fall die Mitarbeit nicht als Zeitverschwendung oder potenziellen Verlust von geistigem Eigentum abtut.
+Unzureichende Finanzierung. Je nach Lenkungsstruktur wird das OSS-Projekt von einer Firma vorangetrieben. Fällt der Support der Firma weg kann die Community im schlimmsten Fall den Wegfall nicht kompensieren.
 
 Eine unzureichende Beachtung von Lizenzierungsfragen, die Mitwirkende abschrecken, die ihren Code nicht ohne angemessenen Schutz oder Entschädigung an andere weitergeben wollen, kann zum Schrumpfen der Community führen.
