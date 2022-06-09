@@ -10,10 +10,10 @@ sources:
     - title: 'B. Weinberg: "The Essentials of Open Source Strategy and Governance", aufgerufen am 06.05.2022'
       url: 'https://web.archive.org/web/20170530155802/http://blog.blackducksoftware.com/the-essentials-of-open-source-strategy-and-governance/'
 questions:
-    - question: 'Welche Szenarien sollten innerhalb Governance der IT-Strategie berücksichtigt werden?'
+    - question: 'Welche Szenarien sollten innerhalb der Governance der Open-Source-Strategie berücksichtigt werden?'
       options: 
         - text: 'Die bloße Verwendung einer OS-Anwendungssoftware im Unternehmen'
-        - text: 'Das schreiben einer eigenen Awednung, die eine OS-Softwarekomponente enthält'
+        - text: 'Das schreiben einer eigenen Anwednung, die eine OS-Softwarekomponente enthält'
         - text: 'Das bereitstellen einer Funktion zu einer OS-Software, die im Unternhemen genutzt wird'
       correct: [1, 2]
     - question: 'Welches sind mögliche Vorteile bei der Einführung einer IT-Stragetie im Unternehmen?'
