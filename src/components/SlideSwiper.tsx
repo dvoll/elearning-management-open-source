@@ -48,7 +48,6 @@ const SlideSwiper = ({ images, texts }: SlideSwiperProps) => {
                         <AspectRatio
                             maxW="56rem"
                             ratio={16 / 9}
-                            paddingBottom="24px"
                             filter={useColorModeValue('', 'invert(.8)')}
                         >
                             <GatsbyImage
@@ -98,7 +97,7 @@ const SlideSwiper = ({ images, texts }: SlideSwiperProps) => {
 const SlideText = ({ html }: { html?: string }) => {
     if (!html) return null;
     const processedBody = useProcessor(html);
-    return <Text paddingBlockStart={4}>{processedBody}</Text>;
+    return <Box paddingBlockStart={4}>{processedBody}</Box>;
 };
 
 export default SlideSwiper;
