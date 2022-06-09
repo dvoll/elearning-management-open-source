@@ -59,10 +59,9 @@ export default function PageLayout({
                 <Spacer />
                 <Footer>
                     <Text>
-                        E-Learing zum Thema{' '}
+                        E-Learning zum Thema{' '}
                         <Code>
-                            Management von kollaborativen Open Source Software Entwicklungs
-                            Projekten
+                            Management von kollaborativen Open Source Software Entwicklungsprojekten
                         </Code>
                     </Text>
                 </Footer>

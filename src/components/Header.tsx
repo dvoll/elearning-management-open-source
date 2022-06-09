@@ -28,7 +28,7 @@ export const Header = ({ onOpen, ...rest }: HeaderProps) => {
             />
 
             <Heading as="h1" fontSize="md" fontFamily="monospace" fontWeight="bold" py="1">
-                Management von kollaborativen Open Source Software Entwicklungs Projekten
+                Management von kollaborativen Open Source Software Entwicklungsprojekten
             </Heading>
         </Flex>
     );
